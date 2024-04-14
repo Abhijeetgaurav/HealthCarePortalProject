@@ -1,0 +1,46 @@
+@(sessionId: String, token: String)
+
+@main("Video Call") {
+
+
+<html>
+<body>
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+<script charset="utf-8">
+    var appId = 'e1483062-7d52-4e0e-856c-08f95a8fc27d';
+    var sessionId = '1_MX5lMTQ4MzA2Mi03ZDUyLTRlMGUtODU2Yy0wOGY5NWE4ZmMyN2R-fjE3MTE4ODA1ODk1MjV-QmtVS0duRDlzay9zcDFZanUyaktLYXE1fn5-';
+    var token = 'eyJhbGciOiJSUzI1NiJ9.eyJhcHBsaWNhdGlvbl9pZCI6ImUxNDgzMDYyLTdkNTItNGUwZS04NTZjLTA4Zjk1YThmYzI3ZCIsImlhdCI6MTcxMTg4MDU4OSwianRpIjoiZTE0ODMwNjItN2Q1Mi00ZTBlLTg1NmMtMDhmOTVhOGZjMjdkIiwic2NvcGUiOiJzZXNzaW9uLmNvbm5lY3QiLCJzZXNzaW9uX2lkIjoiMV9NWDVsTVRRNE16QTJNaTAzWkRVeUxUUmxNR1V0T0RVMll5MHdPR1k1TldFNFptTXlOMlItZmpFM01URTRPREExT0RrMU1qVi1RbXRWUzBkdVJEbHpheTl6Y0RGWmFuVXlha3RMWVhFMWZuNS0iLCJyb2xlIjoicHVibGlzaGVyIiwiaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdCI6IiJ9.MYahkrsGqCxQ5G2YB0H1PzVWI4CS13hNbNJdYYAttrklG3WSJoCAL_wA59aLPrhpxX6_b6gaJs4_Yew3Rl_e6ssVq212pINJ07hX7zTvNDerKvwJOpXBOgF3NMn01hWf1tqCIFsNXBt_gvsIrFX1ezJdBfL72oGfqAHJh8w2O0khR31YHlQO59hQrSZxfPGTWBfrcecgSVYwCepry2JBK3NjLJwhZYAx321Ralf1mZ47qhfpdMfDxaV1O_pIWUeWwGO901TiyjgeRzaWxZBmn_ppj4uxbGvEFM45HmMWBBHQKsquHL-7bX73BUTqHZ9uu1uO8klW84ppHpsuUHx4Jg';
+
+// connect to session
+var session = OT.initSession(appId, sessionId);
+
+// create publisher
+var publisher = OT.initPublisher();
+session.connect(token, function(err) {
+ // publish publisher
+ session.publish(publisher);
+})
+
+
+// create subscriber
+session.on('streamCreated', function(event) {
+ session.subscribe(event.stream);
+});
+</script>
+<p>Great work! You now have 2 clients publishing and subscribing. <br><strong>Click back to the previous Hello World tab in your browser to continue.</strong></p>
+</body>
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+<style>
+    body {
+      font-family: Muli, Arial;
+    }
+    strong {
+      color: #09c;
+    }
+    .OT_publisher {
+      float:left;
+      margin-right: 5px;
+    }
+</style>
+</html>
+}

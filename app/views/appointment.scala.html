@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        // Function to generate a unique patient ID
+        function generatePatientId() {
+            return Math.floor(Math.random() * 10000000);
+        }
+
+        // Function to generate a unique clinic ID
+        function generateClinicId() {
+            return Math.floor(Math.random() * 10000000);
+        }
+
+        // Function to display the generated IDs
+        function displayIds() {
+            var patientId = generatePatientId();
+            var clinicId = generateClinicId();
+
+            document.getElementById("patientIdLabel").innerText = "Your Patient ID: " + patientId;
+            document.getElementById("clinicIdLabel").innerText = "Available Clinic ID: " + clinicId;
+        }
+
+        // Call the function to display the IDs when the page loads
+        window.onload = function() {
+            displayIds();
+        };
+    </script>
+</head>
+<body>
+<header>
+    <h1>Schedule Appointment</h1>
+    <p>Book a video call appointment with our healthcare professionals.</p>
+</header>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <form action="@routes.AppointmentController.scheduleAppointment" method="POST" class="appointment-form">
+                <label id="patientIdLabel"></label>
+                <br>
+                <div class="form-group">
+                    <label for="inputPatientId">Your Patient ID</label>
+                    <input type="text" name="patientId" class="form-control" id="inputPatientId" placeholder="Enter patient ID" required>
+                </div>
+                <label id="clinicIdLabel"></label>
+                <div class="form-group">
+                    <label for="inputDoctorId">Clinic ID</label>
+                    <input type="text" name="doctorId" class="form-control" id="inputDoctorId" placeholder="Enter Clinic ID" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Schedule video call now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Schedule Appointment. All rights reserved.</p>
+</footer>
+</body>
+</html>

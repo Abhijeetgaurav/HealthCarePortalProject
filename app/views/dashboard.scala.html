@@ -1,0 +1,106 @@
+@(logoutUrl: Call)(implicit flash: Flash)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Healthcare Access Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .options {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .option-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .option-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .option-description {
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+
+        .option-btn + p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="color: white;">Welcome to Rural Healthcare Access Portal!</h1>
+    <p>Discover convenient healthcare options available in your area.</p>
+</header>
+<div class="container">
+    <h1>Choose an option:</h1>
+
+    <div class="options">
+        <p>Mobile Clinic: Our mobile clinic brings healthcare services directly to your community. Click below to schedule a visit.</p>
+        <a href="@routes.DashboardController.redirectToMobileClinic" class="option-btn">Schedule Mobile Clinic</a>
+
+        <p>Virtual Appointment: Book a virtual appointment with a healthcare professional from the comfort of your home. Click below to schedule.</p>
+        <a href="@routes.DashboardController.redirectToScheduleAppointment" class="option-btn" id="scheduleVirtualAppointment">Schedule Virtual Appointment</a>
+    </div>
+
+    <div class="options">
+        <a href="@logoutUrl" class="option-btn">Logout</a>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2024 Rural Healthcare Access Portal. All rights reserved.</p>
+</footer>
+</body>
+</html>
